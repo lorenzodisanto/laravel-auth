@@ -2,7 +2,11 @@
 
 @section('content')
     <section>
-        <div class="container">
+        <div class="container my-4">
+            {{-- pulsante inserisci progetto --}}
+            <a href="{{ route('admin.projects.create') }}" role="button" class="btn btn-primary">Add Project</a>
+
+            {{-- lista progetti --}}
             <h1 class="my-4">Project list</h1>
             <table class="table table-bordered">
                 <thead>

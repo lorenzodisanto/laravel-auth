@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
+// importo facades string
+use Illuminate\Support\Str;
+
 class ProjectController extends Controller
 {
     /**
@@ -22,11 +25,11 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        // ritorno il form aggiungi nuovo progetto
+        return view('admin.projects.create');
     }
 
     /**
@@ -37,7 +40,15 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //salvataggio progetto inserito nel form
+        $data = $request->all();
+        $project = new Project();
+        $project->fill($data);
+        $project->slug = Str::slug($project->title);
+        $project->save();
+
+        // ritorno al dettaglio del progetto dopo il salvataggio
+        return redirect()->route('admin.projects.show', $project);
     }
 
     /**
