@@ -10,6 +10,7 @@
                         <th scope="col">Id</th>
                         <th scope="col">Title</th>
                         <th scope="col">Description</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -18,6 +19,7 @@
                             <th scope="row">{{ $project->id }}</th>
                             <td>{{ $project->title }}</td>
                             <td>{{ $project->description }}</td>
+                            <td><a href="{{ route('admin.projects.show', $project) }}"> Info </a></td>
                         </tr>
                     @empty
                         <tr>
