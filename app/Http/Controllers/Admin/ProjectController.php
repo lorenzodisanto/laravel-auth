@@ -11,12 +11,12 @@ class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        // recupero la lista dei progetti dal database
+        $projects = Project::paginate(10);
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
