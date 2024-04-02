@@ -5,7 +5,10 @@
         <div class="container my-4">
 
             {{-- pulsante ritorna alla lista --}}
-            <a href="{{ route('admin.projects.index')}}" class="btn btn-primary"> Return to list</a>  
+            <a href="{{ route('admin.projects.index')}}" class="btn btn-primary"> Return to list</a>
+            
+            {{-- pulsante modifica progetto --}}
+            <a href="{{ route('admin.projects.edit', $project)}}" class="btn btn-warning"> Edit Project</a>
 
             <div class="card my-4">
                 <div class="card-body">
