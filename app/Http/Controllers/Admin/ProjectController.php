@@ -97,10 +97,12 @@ class ProjectController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Project $project)
     {
-        //
+        // cancello progetto
+        $project->delete();
+        // ritorno alla lista 
+        return redirect()->route('admin.projects.index');
     }
 }
