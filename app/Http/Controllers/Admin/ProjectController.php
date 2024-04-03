@@ -4,11 +4,16 @@ namespace App\Http\Controllers\Admin;
 // importo il controller
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\Auth\StoreProjectRequest;
+use App\Http\Requests\Auth\UpdateProjectRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
 // importo facades string
 use Illuminate\Support\Str;
+
+// importo il validator
+use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -38,8 +43,11 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(StoreProjectRequest $request)
+    {   
+        // validazione richiesta
+        $request->validated();
+
         //salvataggio progetto inserito nel form
         $data = $request->all();
         $project = new Project();
@@ -81,8 +89,11 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
-    {
+    public function update(UpdateProjectRequest $request, Project $project)
+    {   
+        // validazione richiesta
+        $request->validated();
+        
         // salvataggio modifica
         $data = $request->all();
         $project->fill($data);
@@ -105,4 +116,31 @@ class ProjectController extends Controller
         // ritorno alla lista 
         return redirect()->route('admin.projects.index');
     }
+
+    // // metodo privato per la LOGICA DI VALIDAZIONE
+    // private function validation($data) {
+
+    //     // metodo make del validator
+    //     $validator = Validator::make(
+    //         $data,
+    //         [
+    //           'title'=> 'required|string|max:150',
+    //           'link'=> 'required|url',
+    //           'description'=> 'required|string' 
+    //         ],
+    //         [
+    //           'title.required'=> 'Il titolo è obbligatorio',
+    //           'title.string'=> 'Il titolo deve essere una stringa',
+    //           'title.max'=> 'Il titolo deve avere massimo 150 caratteri',
+
+    //           'link.required'=> 'Il link è obbligatorio',
+    //           'link.url'=> 'Il link deve essere un URL',
+
+    //           'description.required'=> 'La descrizione è obbligatoria',
+    //           'description.string'=> 'La descrizione deve essere una stringa',
+    //         ]
+    //       )->validate();
+
+    //       return $validator;
+    // }
 }
