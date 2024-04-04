@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "Edit Project " . $project->id)
+
 @section('content')
   <section>
      <div class="container my-4">
